@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Form Events Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 40px;
+    }
+    input {
+      display: block;
+      margin-bottom: 15px;
+      padding: 8px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+    #message {
+      margin-top: 15px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+<h2>jQuery Form Events</h2>
+
+<form id="myForm">
+  <input type="text" id="name" placeholder="Enter your name">
+  <input type="password" id="password"  placeholder="enter your pasword">
+  <button type="submit">Submit</button>
+</form>
+
+<p id="message"></p>
+
+<script>
+  $(document).ready(function() {
+
+    // Focus event
+    $("input").focus(function() {
+      $(this).css("background-color", "#e0f7fa");
+    });
+
+    // Blur event
+    $("input").blur(function() {
+      $(this).css("background-color", "white");
+    });
+
+    // Submit event
+    $("#myForm").submit(function(event) {
+      event.preventDefault(); // stop actual form submission
+      let name = $("#name").val();
+      let password = $("#password").val();
+
+      if(name === "" || password === "") {
+        $("#message").text("Please fill in all fields!").css("color", "red");
+      }  else if(password.length <8) {
+        $("#message").text("password mmust be greater than 8 charecters").css("color","red");
+      }
+       else {
+        $("#message").text("Form submitted successfully!").css("color", "green");}
+    });
+  });
+</script>
+
+</body>
+</html>
